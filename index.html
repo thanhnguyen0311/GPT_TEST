@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HELLO WORLD</title>
+</head>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        const content = prompt(`You're a proofreading expert. Your role is to correct and list out the mistake from the student's essay below delimited by ","`)
+
+        $.ajax({
+            method: "POST",
+            url: "/check",
+            data: JSON.stringify({input: content}),
+            contentType: 'application/json', 
+            success: function (data) {
+                data.forEach((e,index) => {
+                    document.writeln(e + `<br>`)
+                })
+            }
+        })
+    </script>
+</body>
+</html>
